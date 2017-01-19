@@ -18,6 +18,9 @@ SwaggerExpress.create(config, function(err, swaggerExpress) {
   // install middleware
   swaggerExpress.register(app);
 
+  app.use(bunyanLoggerMiddleware()); // optionally we can set log level app.use(bunyanLoggerMiddleware('warn'))
+  app.use(winstonLoggerMiddleware()); // optionally we can set log level app.use(winstonLoggerMiddleware('warn'))
+
   var port = process.env.PORT || 10010;
   app.listen(port);
 
