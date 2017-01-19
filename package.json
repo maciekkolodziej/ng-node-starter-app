@@ -8,6 +8,7 @@
   "license": "",
   "main": "app.js",
   "dependencies": {
+    "bunyan": "^1.8.5",
     "express": "^4.12.3",
     "pg": "^6.1.2",
     "pg-hstore": "^2.3.2",
