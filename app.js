@@ -2,6 +2,10 @@
 
 var SwaggerExpress = require('swagger-express-mw');
 var app = require('express')();
+
+var bunyanLoggerMiddleware = require('./middlewares/bunyan-logger');
+var winstonLoggerMiddleware = require('./middlewares/winston-logger');
+
 module.exports = app; // for testing
 
 var config = {
