@@ -22,14 +22,19 @@ describe('user model', () => {
   it('doesn\'t allow duplicate username', done => {
     User.create(correctUser)
       .then(() => User.create(correctUser))
-      .catch(error => done());
+      .catch(error => {
+        if ('username' in error.fields) {
+          return done();
+        }
+        done(error);
+      });
   });
 
   it('hashes password before create', done => {
     User.create(correctUser)
       .then(user => bcrypt.compare(correctUser.password, user.password))
       .then(isCorrectPassword => {
-        isCorrectPassword.should.be.ok();
+        isCorrectPassword.should.be.ok;
         done();
       })
       .catch(done);
@@ -42,7 +47,7 @@ describe('user model', () => {
       .then(user => user.update({ password: fakePassword }))
       .then(updatedUser => bcrypt.compare(fakePassword, updatedUser.password))
       .then(isCorrectPassword => {
-        isCorrectPassword.should.be.ok();
+        isCorrectPassword.should.be.ok;
         done();
       })
       .catch(done);
@@ -54,7 +59,7 @@ describe('user model', () => {
       .then(user => user.update({ username: 'JaneDoe' }))
       .then(updatedUser => bcrypt.compare(correctUser.password, updatedUser.password))
       .then(isCorrectPassword => {
-        isCorrectPassword.should.be.ok();
+        isCorrectPassword.should.be.ok;
         done();
       })
       .catch(done);
