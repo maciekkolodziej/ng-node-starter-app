@@ -1,10 +1,11 @@
 const { User } = require('../../models');
 
+function register(req, res) {
+  User.create(req.body)
+    .then(user => res.status(201).send(user))
+    .catch(error => res.status(500).send(error));
+}
+
 module.exports = {
-  userRegister(req, res) {
-    User.create(req.body)
-      .then(user => user.save())
-      .then(user => res.status(201).send(user))
-      .catch(err => res.status(500).send(err));
-  },
+  userRegister: register,
 };
