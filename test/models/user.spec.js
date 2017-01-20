@@ -10,11 +10,19 @@ const correctUser = {
 require('should');
 
 describe('user model', () => {
+  beforeEach(() => User.destroy({ where: {} }));
+
   it('should exist', (done) => {
     User.create(correctUser).then((user) => {
       user.should.be.ok;
       done();
     });
+  });
+
+  it('doesn\'t allow duplicate username', done => {
+    User.create(correctUser)
+      .then(() => User.create(correctUser))
+      .catch(error => done());
   });
 
   it('hashes password before create', done => {
