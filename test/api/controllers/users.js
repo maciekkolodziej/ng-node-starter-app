@@ -35,7 +35,7 @@ describe('controllers', () => {
                 .send(correctUser)
                 .expect(409)
                 .end(error => {
-                  should.ifError(error);
+                  should.not.exist(error);
                   done();
                 });
             });

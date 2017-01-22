@@ -23,10 +23,8 @@ describe('user model', () => {
     User.create(correctUser)
       .then(() => User.create(correctUser))
       .catch(error => {
-        if ('username' in error.fields) {
-          return done();
-        }
-        done(error);
+        error.fields.should.have.property('username');
+        done();
       });
   });
 
