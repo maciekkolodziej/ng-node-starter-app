@@ -1,7 +1,7 @@
 const bcrypt = require('bcrypt');
 
 const { User } = require('../../models');
-const passport = require('../../initializers/passport');
+const passport = require('passport');
 
 const SALT_ROUNDS = 10;
 

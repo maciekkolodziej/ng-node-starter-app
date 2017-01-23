@@ -4,7 +4,7 @@ var SwaggerExpress = require('swagger-express-mw');
 var app = require('express')();
 var bodyParser = require('body-parser');
 
-const passport = require('./initializers/passport');
+const passport = require('passport');
 
 var config = {
   appRoot: __dirname // required config

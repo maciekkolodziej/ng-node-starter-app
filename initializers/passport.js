@@ -23,5 +23,3 @@ passport.deserializeUser((id, done) => {
     .then(user => done(null, user))
     .catch(done);
 });
-
-module.exports = passport;
