@@ -1,9 +1,11 @@
 const bcrypt = require('bcrypt');
-
-const { User } = require('../../models');
+const jwt = require('jwt-simple');
 const passport = require('passport');
 
+const { User } = require('../../models');
+
 const SALT_ROUNDS = 10;
+const JWT_TOKEN = 'secret';
 
 module.exports = {
   userRegister(req, res) {
@@ -16,12 +18,12 @@ module.exports = {
         return res.status(500).send(error);
       });
   },
-  login(req, res, next) {
-    return passport.authenticate('local', (error, user) => {
-      if (error) { return res.status(401).send(error); }
-      if (!user) { return res.status(401).json('Not authorized'); }
+  login(req, res) {
+    const next = function (nextReq, nextRes) {
+      const token = jwt.encode({ id: nextReq.user.id }, JWT_TOKEN);
+      return res.status(200).send({ token });
+    }.bind(null, req, res);
 
-      return res.status(200).json(user);
-    })(req, res, next);
+    passport.authenticate('local', { session: false })(req, res, next);
   },
 };

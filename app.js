@@ -1,17 +1,16 @@
 'use strict';
 
-var SwaggerExpress = require('swagger-express-mw');
-var app = require('express')();
-var bodyParser = require('body-parser');
-
+const SwaggerExpress = require('swagger-express-mw');
 const passport = require('passport');
+const app = require('express')();
 
-var config = {
+
+const config = {
   appRoot: __dirname // required config
 };
 
-app.use(bodyParser.json());
 app.use(passport.initialize());
+require('./initializers/passport');
 
 SwaggerExpress.create(config, function(err, swaggerExpress) {
   if (err) { throw err; }
@@ -19,7 +18,7 @@ SwaggerExpress.create(config, function(err, swaggerExpress) {
   // install middleware
   swaggerExpress.register(app);
 
-  var port = process.env.PORT || 10010;
+  const port = process.env.PORT || 10010;
   app.listen(port);
 
   console.log(`Listening on port ${port}`);
