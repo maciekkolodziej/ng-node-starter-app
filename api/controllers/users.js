@@ -1,10 +1,8 @@
-const bcrypt = require('bcrypt');
 const jwt = require('jwt-simple');
 const passport = require('passport');
 
 const { User } = require('../../models');
 
-const SALT_ROUNDS = 10;
 const JWT_TOKEN = 'secret';
 
 module.exports = {
@@ -25,5 +23,14 @@ module.exports = {
     }.bind(null, req, res);
 
     passport.authenticate('local', { session: false })(req, res, next);
+  },
+  listAll(req, res) {
+    const next = function (nextReq, nextRes) {
+      User.findAll()
+        .then(users => nextRes.status(200).send(users))
+        .catch(error => nextRes.status(500).send(error));
+    }.bind(null, req, res);
+
+    passport.authenticate('bearer', { session: false })(req, res, next);
   },
 };

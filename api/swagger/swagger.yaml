@@ -37,6 +37,25 @@ paths:
           description: Error
           schema:
             $ref: "#/definitions/ErrorResponse"
+    get:
+      description: Gets list of users
+      operationId: listAll
+      parameters:
+        - name: Authorization
+          in: header
+          description: Authentication token
+          required: true
+          type: string
+      responses:
+        "200":
+          description: Success
+          schema:
+            items:
+              $ref: "#/definitions/UserResponse"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
   /users/login:
     x-swagger-router-controller: users
     post:
