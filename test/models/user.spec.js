@@ -62,4 +62,25 @@ describe('user model', () => {
       })
       .catch(done);
   });
+
+  it('isValidPassword returns true for valid password', done => {
+    User.create(correctUser)
+      .then(user => user.isValidPassword(correctUser.password))
+      .then(isValid => {
+        isValid.should.be.ok();
+        done();
+      })
+      .catch(done);
+  });
+
+  it('isValidPassword returns false for invalid password', done => {
+    User.create(correctUser)
+      .then(user => user.isValidPassword('invalid'))
+      .then(isValid => {
+        isValid.should.not.be.ok();
+        done();
+      })
+      .catch(done);
+  });
+
 });
