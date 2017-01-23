@@ -57,7 +57,7 @@ paths:
         "200":
           description: Success
           schema:
-            $ref: "#/definitions/UserResponse"
+            $ref: "#/definitions/TokenResponse"
         default:
           description: Error
           schema:
@@ -73,6 +73,12 @@ definitions:
       id:
         type: integer
       username:
+        type: string
+  TokenResponse:
+    required:
+      - token
+    properties:
+      token:
         type: string
   ErrorResponse:
     required:
