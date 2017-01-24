@@ -32,7 +32,7 @@ passport.use(new BearerStrategy({ session: false }, (token, done) => {
 passport.serializeUser((user, done) => done(null, user.id));
 
 passport.deserializeUser((id, done) => {
-  User.find({ where: { id } })
+  User.findById(id)
     .then(user => done(null, user))
     .catch(done);
 });

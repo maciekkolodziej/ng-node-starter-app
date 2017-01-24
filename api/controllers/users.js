@@ -19,7 +19,7 @@ module.exports = {
   login(req, res) {
     const next = function (nextReq, nextRes) {
       const token = jwt.encode({ id: nextReq.user.id }, JWT_TOKEN);
-      return res.status(200).send({ token });
+      return nextRes.status(200).send({ token });
     }.bind(null, req, res);
 
     passport.authenticate('local', { session: false })(req, res, next);
