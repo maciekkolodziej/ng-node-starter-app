@@ -11,12 +11,11 @@ require('should');
 
 describe('user model', () => {
   let user;
-  beforeEach(done => {
-    User.destroy({ where: {} })
+  beforeEach(() => {
+    return User.destroy({ where: {} })
       .then(() => User.create(correctUser))
       .then(createdUser => {
         user = createdUser;
-        done()
       });
   });
 

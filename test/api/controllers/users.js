@@ -14,10 +14,7 @@ const correctUser = {
 
 describe('controllers', () => {
   describe('users', () => {
-    beforeEach(done => {
-      User.destroy({ where: {} })
-        .then(() => done());
-    });
+    beforeEach(() => User.destroy({ where: {} }));
 
     describe('POST /users', () => {
       describe('with missing password', () => {
@@ -34,10 +31,7 @@ describe('controllers', () => {
       });
 
       describe('with existing username', () => {
-        beforeEach(done => {
-          User.create(correctUser)
-            .then(() => done());
-        });
+        beforeEach(() => User.create(correctUser));
 
         it('should respond with 409 Conflict code', done => {
           request(server)
@@ -75,11 +69,10 @@ describe('controllers', () => {
 
     describe('POST /users/login', () => {
       let user;
-      beforeEach(done => {
-        User.create(correctUser)
+      beforeEach(() => {
+        return User.create(correctUser)
           .then(createdUser => {
             user = createdUser;
-            done();
           });
       });
 
@@ -119,15 +112,13 @@ describe('controllers', () => {
     describe('GET /users', () => {
       describe('with valid authentication token', () => {
         let token;
-        beforeEach(done => {
-          User.create(correctUser)
+        beforeEach(() => {
+          return User.create(correctUser)
             .then(user => {
               token = jwt.encode({
                 id: user.id,
                 expirationDate: new Date(Date.now() + EXPIRATION_TIME),
               }, JWT_TOKEN);
-
-              done();
             });
         });
 
