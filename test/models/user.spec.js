@@ -10,18 +10,23 @@ const correctUser = {
 require('should');
 
 describe('user model', () => {
-  beforeEach(() => User.destroy({ where: {} }));
+  let user;
+  beforeEach(done => {
+    User.destroy({ where: {} })
+      .then(() => User.create(correctUser))
+      .then(createdUser => {
+        user = createdUser;
+        done()
+      });
+  });
 
   it('should exist', (done) => {
-    User.create(correctUser).then((user) => {
-      user.should.be.ok;
-      done();
-    });
+    user.should.be.ok;
+    done();
   });
 
   it('doesn\'t allow duplicate username', done => {
     User.create(correctUser)
-      .then(() => User.create(correctUser))
       .catch(error => {
         error.fields.should.have.property('username');
         done();
@@ -29,8 +34,7 @@ describe('user model', () => {
   });
 
   it('hashes password before create', done => {
-    User.create(correctUser)
-      .then(user => bcrypt.compare(correctUser.password, user.password))
+    bcrypt.compare(correctUser.password, user.password)
       .then(isCorrectPassword => {
         isCorrectPassword.should.be.ok;
         done();
@@ -41,8 +45,7 @@ describe('user model', () => {
   it('successfully updates password', done => {
     const fakePassword = 'secret';
 
-    User.create(correctUser)
-      .then(user => user.update({ password: fakePassword }))
+    user.update({ password: fakePassword })
       .then(updatedUser => bcrypt.compare(fakePassword, updatedUser.password))
       .then(isCorrectPassword => {
         isCorrectPassword.should.be.ok;
@@ -53,8 +56,7 @@ describe('user model', () => {
   });
 
   it('doesn\'t update password if it wasn\'t changed', done => {
-    User.create(correctUser)
-      .then(user => user.update({ username: 'JaneDoe' }))
+    user.update({ username: 'JaneDoe' })
       .then(updatedUser => bcrypt.compare(correctUser.password, updatedUser.password))
       .then(isCorrectPassword => {
         isCorrectPassword.should.be.ok;
@@ -64,8 +66,7 @@ describe('user model', () => {
   });
 
   it('isValidPassword returns true for valid password', done => {
-    User.create(correctUser)
-      .then(user => user.isValidPassword(correctUser.password))
+    user.isValidPassword(correctUser.password)
       .then(isValid => {
         isValid.should.be.ok();
         done();
@@ -74,8 +75,7 @@ describe('user model', () => {
   });
 
   it('isValidPassword returns false for invalid password', done => {
-    User.create(correctUser)
-      .then(user => user.isValidPassword('invalid'))
+    user.isValidPassword('invalid')
       .then(isValid => {
         isValid.should.not.be.ok();
         done();
