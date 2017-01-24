@@ -2,10 +2,12 @@ const jwt = require('jwt-simple');
 const passport = require('passport');
 
 const { User } = require('../../models');
+const { JWT_TOKEN } = require('../../initializers/passport');
 
-const JWT_TOKEN = 'secret';
+const EXPIRATION_TIME = 7 * 24 * 60 * 60 * 1000; // one week
 
 module.exports = {
+  EXPIRATION_TIME,
   userRegister(req, res) {
     User.create(req.body)
       .then(user => res.status(201).send(user))
@@ -18,11 +20,15 @@ module.exports = {
   },
   login(req, res) {
     const next = function (nextReq, nextRes) {
-      const token = jwt.encode({ id: nextReq.user.id }, JWT_TOKEN);
+      const token = jwt.encode({
+        id: nextReq.user.id,
+        expiration_date: new Date(Date.now() + EXPIRATION_TIME)
+        }, JWT_TOKEN);
+
       return nextRes.status(200).send({ token });
     }.bind(null, req, res);
 
-    passport.authenticate('local', { session: false })(req, res, next);
+    passport.authenticate('local')(req, res, next);
   },
   listAll(req, res) {
     const next = function (nextReq, nextRes) {
@@ -31,6 +37,6 @@ module.exports = {
         .catch(error => nextRes.status(500).send(error));
     }.bind(null, req, res);
 
-    passport.authenticate('bearer', { session: false })(req, res, next);
+    passport.authenticate('bearer')(req, res, next);
   },
 };
