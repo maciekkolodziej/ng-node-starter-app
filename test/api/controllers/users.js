@@ -16,7 +16,6 @@ describe('controllers', () => {
   describe('users', () => {
     beforeEach(done => {
       User.destroy({ where: {} })
-        .then(() => User.create(correctUser))
         .then(() => done());
     });
 
@@ -35,6 +34,11 @@ describe('controllers', () => {
       });
 
       describe('with existing username', () => {
+        beforeEach(done => {
+          User.create(correctUser)
+            .then(() => done());
+        });
+
         it('should respond with 409 Conflict code', done => {
           request(server)
             .post('/api/users')
@@ -49,16 +53,14 @@ describe('controllers', () => {
 
       describe('with correct params', () => {
         it('should create and respond with new user account', (done) => {
-          const user = { username: 'user', password: 'pass' };
-
           request(server)
             .post('/api/users')
-            .send(user)
+            .send(correctUser)
             .expect(201)
             .end((err, res) => {
               should.not.exist(err);
 
-              res.body.username.should.eql(user.username);
+              res.body.username.should.eql(correctUser.username);
 
               User.findById(res.body.id)
                 .then((registeredUser) => {
@@ -72,6 +74,15 @@ describe('controllers', () => {
 
 
     describe('POST /users/login', () => {
+      let user;
+      beforeEach(done => {
+        User.create(correctUser)
+          .then(createdUser => {
+            user = createdUser;
+            done();
+          });
+      });
+
       describe('with valid password', () => {
         it('responds with token', done => {
           request(server)
@@ -84,12 +95,9 @@ describe('controllers', () => {
               const userId = token.id;
               const expires = Date.parse(token.expirationDate);
 
-              User.findById(userId)
-                .then(user => {
-                  should.exist(user);
-                  expires.should.be.above(Date.now());
-                  done();
-                });
+              userId.should.eql(user.id);
+              expires.should.be.above(Date.now());
+              done();
             });
         });
       });
@@ -98,7 +106,7 @@ describe('controllers', () => {
         it('returns 401 code', done => {
           request(server)
             .post('/api/users/login')
-            .send({ username: correctUser.username, password: 'wrong' })
+            .send({ username: user.username, password: 'wrong' })
             .expect(401)
             .end(error => {
               should.not.exist(error);
@@ -112,7 +120,7 @@ describe('controllers', () => {
       describe('with valid authentication token', () => {
         let token;
         beforeEach(done => {
-          User.find({ where: { username: correctUser.username } })
+          User.create(correctUser)
             .then(user => {
               token = jwt.encode({
                 id: user.id,
