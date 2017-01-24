@@ -23,7 +23,7 @@ passport.use(new LocalStrategy({ session: false }, (username, password, done) =>
 passport.use(new BearerStrategy({ session: false }, (token, done) => {
   const decodedToken = jwt.decode(token, JWT_TOKEN);
   const userId = decodedToken && decodedToken.id;
-  const expires = decodedToken && Date.parse(decodedToken.expiration_date);
+  const expires = decodedToken && Date.parse(decodedToken.expirationDate);
 
   if (expires && expires > Date.now()) {
     return User.findById(userId)

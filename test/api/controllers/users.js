@@ -81,7 +81,7 @@ describe('controllers', () => {
                   should.not.exist(error);
                   const token = jwt.decode(res.body.token, JWT_TOKEN);
                   const userId = token && token.id;
-                  const expires = token && Date.parse(token.expiration_date);
+                  const expires = token && Date.parse(token.expirationDate);
 
                   User.findById(userId)
                     .then(user => {
@@ -118,7 +118,7 @@ describe('controllers', () => {
             .then(user => {
               const token = jwt.encode({
                 id: user.id,
-                expiration_date: new Date(Date.now() + EXPIRATION_TIME),
+                expirationDate: new Date(Date.now() + EXPIRATION_TIME),
               }, JWT_TOKEN);
 
               request(server)

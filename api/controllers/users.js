@@ -22,7 +22,7 @@ module.exports = {
     const next = function (nextReq, nextRes) {
       const token = jwt.encode({
         id: nextReq.user.id,
-        expiration_date: new Date(Date.now() + EXPIRATION_TIME)
+        expirationDate: new Date(Date.now() + EXPIRATION_TIME)
         }, JWT_TOKEN);
 
       return nextRes.status(200).send({ token });
