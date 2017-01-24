@@ -9,8 +9,8 @@ const config = {
   appRoot: __dirname // required config
 };
 
-app.use(passport.initialize());
 require('./initializers/passport');
+app.use(passport.initialize());
 
 SwaggerExpress.create(config, function(err, swaggerExpress) {
   if (err) { throw err; }
