@@ -1,23 +1,26 @@
 'use strict';
 
-var SwaggerExpress = require('swagger-express-mw');
-var app = require('express')();
-module.exports = app; // for testing
+const SwaggerExpress = require('swagger-express-mw');
+const passport = require('passport');
+const app = require('express')();
 
-var config = {
+const config = {
   appRoot: __dirname // required config
 };
+
+require('./initializers/passport');
 
 SwaggerExpress.create(config, function(err, swaggerExpress) {
   if (err) { throw err; }
 
   // install middleware
+  app.use(passport.initialize());
   swaggerExpress.register(app);
 
-  var port = process.env.PORT || 10010;
+  const port = process.env.PORT || 10010;
   app.listen(port);
 
-  if (swaggerExpress.runner.swagger.paths['/hello']) {
-    console.log('try this:\ncurl http://127.0.0.1:' + port + '/hello?name=Scott');
-  }
+  console.log(`Listening on port ${port}`);
 });
+
+module.exports = app; // for testing
