@@ -2,9 +2,9 @@ const jwt = require('jwt-simple');
 const passport = require('passport');
 
 const { User } = require('../../models');
-const { JWT_TOKEN } = require('../../initializers/passport');
+const { JWT_TOKEN } = require('../../initializers/passport'); // TODO - as env. variable
 
-const EXPIRATION_TIME = 7 * 24 * 60 * 60 * 1000; // one week
+const EXPIRATION_TIME = 7 * 24 * 60 * 60 * 1000; // one week - TODO - as env. variable
 
 module.exports = {
   EXPIRATION_TIME,

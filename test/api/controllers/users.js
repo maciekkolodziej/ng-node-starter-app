@@ -5,8 +5,9 @@ const jwt = require('jwt-simple');
 const server = require('../../../app');
 const { User } = require('../../../models');
 
-const { JWT_TOKEN } = require('../../../initializers/passport');
-const { EXPIRATION_TIME } = require('../../../api/controllers/users');
+const { JWT_TOKEN } = require('../../../initializers/passport'); // TODO: as env. variable
+const { EXPIRATION_TIME } = require('../../../api/controllers/users'); // TODO: as env. variable
+
 const correctUser = {
   username: 'JohnDoe',
   password: 'password',
@@ -66,9 +67,9 @@ describe('controllers', () => {
       });
     });
 
-
     describe('POST /users/login', () => {
       let user;
+
       beforeEach(() => {
         return User.create(correctUser)
           .then(createdUser => {
@@ -86,7 +87,7 @@ describe('controllers', () => {
               should.not.exist(error);
               const token = jwt.decode(res.body.token, JWT_TOKEN);
               const userId = token.id;
-              const expires = Date.parse(token.expirationDate);
+              const expires = new Date(token.expirationDate);
 
               userId.should.eql(user.id);
               expires.should.be.above(Date.now());
@@ -112,6 +113,7 @@ describe('controllers', () => {
     describe('GET /users', () => {
       describe('with valid authentication token', () => {
         let token;
+
         beforeEach(() => {
           return User.create(correctUser)
             .then(user => {
@@ -156,6 +158,5 @@ describe('controllers', () => {
         });
       });
     });
-
   });
 });

@@ -5,7 +5,7 @@ const BearerStrategy = require('passport-http-bearer').Strategy;
 
 const { User } = require('../models');
 
-const JWT_TOKEN = 'secret';
+const JWT_TOKEN = 'secret'; // TODO: as env. variable
 
 passport.use(new LocalStrategy({ session: false }, (username, password, done) => {
   User.find({ where: { username } })
@@ -23,9 +23,9 @@ passport.use(new LocalStrategy({ session: false }, (username, password, done) =>
 passport.use(new BearerStrategy({ session: false }, (token, done) => {
   const decodedToken = jwt.decode(token, JWT_TOKEN);
   const userId = decodedToken && decodedToken.id;
-  const expires = decodedToken && Date.parse(decodedToken.expirationDate);
+  const expires = decodedToken && new Date(decodedToken.expirationDate);
 
-  if (expires && expires > Date.now()) {
+  if (expires > Date.now()) {
     return User.findById(userId)
       .then(user => done(null, user))
       .catch(done);
