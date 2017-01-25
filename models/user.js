@@ -2,14 +2,14 @@ const bcrypt = require('bcrypt');
 
 const SALT_ROUNDS = 10;
 
-function hashPassword(user) {
+function hashPassword(user) { // eslint-disable-line consistent-return
   if (user.changed('password')) {
-    return bcrypt.hash(user.password, SALT_ROUNDS)
-      .then(hashedPass => user.password = hashedPass);
+    return bcrypt.hash(user.password, SALT_ROUNDS) // eslint-disable-next-line no-param-reassign
+      .then((hashedPass) => { user.password = hashedPass; });
   }
 }
 
-module.exports = function(sequelize, DataTypes) {
+module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define('User', {
     username: { type: DataTypes.STRING, allowNull: false, unique: true },
     password: { type: DataTypes.STRING, allowNull: false },
@@ -19,7 +19,8 @@ module.exports = function(sequelize, DataTypes) {
       beforeUpdate: hashPassword,
     },
     classMethods: {
-      associate: function(models) {
+      // TODO: delete lint disabling when `models` is used
+      associate(models) { // eslint-disable-line no-unused-vars
         // associations can be defined here
       },
     },

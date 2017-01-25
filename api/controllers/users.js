@@ -11,7 +11,7 @@ module.exports = {
   userRegister(req, res) {
     User.create(req.body)
       .then(user => res.status(201).send(user))
-      .catch(error => {
+      .catch((error) => {
         if ('username' in error.fields) {
           return res.status(409).send(error);
         }
@@ -19,11 +19,11 @@ module.exports = {
       });
   },
   login(req, res) {
-    const next = function (nextReq, nextRes) {
+    const next = function next(nextReq, nextRes) {
       const token = jwt.encode({
         id: nextReq.user.id,
-        expirationDate: new Date(Date.now() + EXPIRATION_TIME)
-        }, JWT_TOKEN);
+        expirationDate: new Date(Date.now() + EXPIRATION_TIME),
+      }, JWT_TOKEN);
 
       return nextRes.status(200).send({ token });
     }.bind(null, req, res);
@@ -31,7 +31,7 @@ module.exports = {
     passport.authenticate('local')(req, res, next);
   },
   getAccount(req, res) {
-    const next = function (nextReq, nextRes) {
+    const next = function next(nextReq, nextRes) {
       return nextRes.status(200).send(nextReq.user);
     }.bind(null, req, res);
 

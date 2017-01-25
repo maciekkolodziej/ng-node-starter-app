@@ -21,11 +21,15 @@
     "swagger-express-mw": "^0.1.0"
   },
   "devDependencies": {
+    "eslint": "^3.14.0",
+    "eslint-config-airbnb-base": "^11.0.1",
     "should": "^7.1.0",
     "supertest": "^1.0.0"
   },
   "scripts": {
     "edit": "swagger project edit",
+    "lint": "eslint app api models initializers",
+    "lint-test": "eslint -c .eslintrc-test.js test",
     "start": "swagger project start",
     "test": "NODE_ENV=test swagger project test"
   }

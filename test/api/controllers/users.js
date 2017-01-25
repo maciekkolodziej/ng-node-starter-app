@@ -34,12 +34,12 @@ describe('controllers', () => {
       describe('with existing username', () => {
         beforeEach(() => User.create(correctUser));
 
-        it('should respond with 409 Conflict code', done => {
+        it('should respond with 409 Conflict code', (done) => {
           request(server)
             .post('/api/users')
             .send(correctUser)
             .expect(409)
-            .end(error => {
+            .end((error) => {
               should.not.exist(error);
               done();
             });
@@ -70,15 +70,13 @@ describe('controllers', () => {
     describe('POST /users/login', () => {
       let user;
 
-      beforeEach(() => {
-        return User.create(correctUser)
-          .then(createdUser => {
+      beforeEach(() => User.create(correctUser)
+          .then((createdUser) => {
             user = createdUser;
-          });
-      });
+          }));
 
       describe('with valid password', () => {
-        it('responds with token', done => {
+        it('responds with token', (done) => {
           request(server)
             .post('/api/users/login')
             .send(correctUser)
@@ -97,12 +95,12 @@ describe('controllers', () => {
       });
 
       describe('with invalid password', () => {
-        it('returns 401 code', done => {
+        it('returns 401 code', (done) => {
           request(server)
             .post('/api/users/login')
             .send({ username: user.username, password: 'wrong' })
             .expect(401)
-            .end(error => {
+            .end((error) => {
               should.not.exist(error);
               done();
             });
@@ -116,12 +114,12 @@ describe('controllers', () => {
           id: Math.floor(Math.random() * 100),
         }, JWT_TOKEN);
 
-        it('responds with 401 Unauthorized code', done => {
+        it('responds with 401 Unauthorized code', (done) => {
           request(server)
             .get('/api/users/me')
             .set('Authorization', `Bearer ${token}`)
             .expect(401)
-            .end(error => {
+            .end((error) => {
               should.not.exist(error);
               done();
             });
@@ -132,18 +130,16 @@ describe('controllers', () => {
         let token;
         let user;
 
-        beforeEach(() => {
-          return User.create(correctUser)
-            .then(createdUser => {
+        beforeEach(() => User.create(correctUser)
+            .then((createdUser) => {
               user = createdUser;
               token = jwt.encode({
                 id: user.id,
                 expirationDate: new Date(Date.now() + EXPIRATION_TIME),
               }, JWT_TOKEN);
-            });
-        });
+            }));
 
-        it('responds with data of currently logged-in user', done => {
+        it('responds with data of currently logged-in user', (done) => {
           request(server)
             .get('/api/users/me')
             .set('Authorization', `Bearer ${token}`)
