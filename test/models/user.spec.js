@@ -17,7 +17,7 @@ describe('user model', () => {
       .then((createdUser) => { user = createdUser; }));
 
   it('should exist', (done) => {
-    user.should.be.ok();
+    user.should.be.ok;
     done();
   });
 
@@ -34,7 +34,7 @@ describe('user model', () => {
   describe('password hashing', () => {
     it('hashes password when creating new user', () => {
       bcrypt.compareSync(correctUser.password, user.password)
-        .should.be.ok();
+        .should.be.ok;
     });
 
     it('successfully updates password', (done) => {
@@ -43,7 +43,7 @@ describe('user model', () => {
       user.update({ password: newPassword })
         .then((updatedUser) => {
           bcrypt.compareSync(newPassword, updatedUser.password)
-            .should.be.ok();
+            .should.be.ok;
           done();
         })
         .catch(done);
@@ -53,7 +53,7 @@ describe('user model', () => {
       user.update({ username: 'JaneDoe' })
         .then((updatedUser) => {
           bcrypt.compareSync(correctUser.password, updatedUser.password)
-            .should.be.ok();
+            .should.be.ok;
           done();
         })
         .catch(done);
@@ -64,7 +64,7 @@ describe('user model', () => {
     it('returns true for valid password', (done) => {
       user.isValidPassword(correctUser.password)
         .then((isValid) => {
-          isValid.should.be.ok();
+          isValid.should.be.ok;
           done();
         })
         .catch(done);

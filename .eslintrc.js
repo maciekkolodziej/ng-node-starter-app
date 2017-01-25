@@ -1,4 +1,7 @@
 module.exports = {
-  "extends": "airbnb-base",
-  "plugins": [],
+  extends: 'airbnb-base',
+  rules: {
+    'no-param-reassign': 0,
+    'consistent-return': 0,
+  },
 };

@@ -2,9 +2,9 @@ const bcrypt = require('bcrypt');
 
 const SALT_ROUNDS = 10;
 
-function hashPassword(user) { // eslint-disable-line consistent-return
+function hashPassword(user) {
   if (user.changed('password')) {
-    return bcrypt.hash(user.password, SALT_ROUNDS) // eslint-disable-next-line no-param-reassign
+    return bcrypt.hash(user.password, SALT_ROUNDS)
       .then((hashedPass) => { user.password = hashedPass; });
   }
 }
