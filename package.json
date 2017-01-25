@@ -27,6 +27,7 @@
   "scripts": {
     "edit": "swagger project edit",
     "start": "swagger project start",
-    "test": "NODE_ENV=test swagger project test"
+    "test": "NODE_ENV=test swagger project test",
+    "seeds": "sequelize db:seed --seed seeders/*",
   }
 }
