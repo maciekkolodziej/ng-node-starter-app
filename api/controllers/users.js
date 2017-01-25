@@ -30,11 +30,9 @@ module.exports = {
 
     passport.authenticate('local')(req, res, next);
   },
-  listAll(req, res) {
+  getAccount(req, res) {
     const next = function (nextReq, nextRes) {
-      User.findAll()
-        .then(users => nextRes.status(200).send(users))
-        .catch(error => nextRes.status(500).send(error));
+      return nextRes.status(200).send(nextReq.user);
     }.bind(null, req, res);
 
     passport.authenticate('bearer')(req, res, next);
