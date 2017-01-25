@@ -1,6 +1,6 @@
 const jwt = require('jwt-simple');
 const passport = require('passport');
-const compose = require('compose-middleware').compose;
+const { compose } = require('compose-middleware');
 
 const { User } = require('../../models');
 const { JWT_TOKEN } = require('../../initializers/passport'); // TODO - as env. variable
