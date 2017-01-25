@@ -110,37 +110,7 @@ describe('controllers', () => {
       });
     });
 
-    describe('GET /users', () => {
-      describe('with valid authentication token', () => {
-        let token;
-
-        beforeEach(() => {
-          return User.create(correctUser)
-            .then(user => {
-              token = jwt.encode({
-                id: user.id,
-                expirationDate: new Date(Date.now() + EXPIRATION_TIME),
-              }, JWT_TOKEN);
-            });
-        });
-
-        it('responds with users', done => {
-          request(server)
-            .get('/api/users')
-            .set('Authorization', `Bearer ${token}`)
-            .expect(200)
-            .end((error, res) => {
-              should.not.exist(error);
-
-              User.findAll()
-                .then(users => {
-                  res.body.length.should.eql(users.length);
-                  done();
-                });
-            });
-        });
-      });
-
+    describe('GET /users/me', () => {
       describe('with invalid authentication token', () => {
         const token = jwt.encode({
           id: Math.floor(Math.random() * 100),
@@ -148,11 +118,40 @@ describe('controllers', () => {
 
         it('responds with 401 Unauthorized code', done => {
           request(server)
-            .get('/api/users')
+            .get('/api/users/me')
             .set('Authorization', `Bearer ${token}`)
             .expect(401)
             .end(error => {
               should.not.exist(error);
+              done();
+            });
+        });
+      });
+
+      describe('with valid authentication token', () => {
+        let token;
+        let user;
+
+        beforeEach(() => {
+          return User.create(correctUser)
+            .then(createdUser => {
+              user = createdUser;
+              token = jwt.encode({
+                id: user.id,
+                expirationDate: new Date(Date.now() + EXPIRATION_TIME),
+              }, JWT_TOKEN);
+            });
+        });
+
+        it('responds with data of currently logged-in user', done => {
+          request(server)
+            .get('/api/users/me')
+            .set('Authorization', `Bearer ${token}`)
+            .expect(200)
+            .end((error, res) => {
+              should.not.exist(error);
+              res.body.id.should.eql(user.id);
+
               done();
             });
         });
