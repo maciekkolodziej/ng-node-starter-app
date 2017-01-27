@@ -26,4 +26,4 @@ RUN NODE_ENV=test sequelize db:migrate
 
 EXPOSE 10010
 
-CMD [ "npm", "start" ] 
+CMD [ "npm", "start" ]
