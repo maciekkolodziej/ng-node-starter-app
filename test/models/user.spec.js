@@ -14,7 +14,9 @@ describe('user model', () => {
 
   beforeEach(() => User.destroy({ where: {} })
       .then(() => User.create(correctUser))
-      .then((createdUser) => { user = createdUser; }));
+      .then((createdUser) => {
+        user = createdUser;
+      }));
 
   it('should exist', (done) => {
     user.should.be.ok;
@@ -73,7 +75,7 @@ describe('user model', () => {
     it('returns false for invalid password', (done) => {
       user.isValidPassword('invalid')
         .then((isValid) => {
-          isValid.should.not.be.ok();
+          isValid.should.not.be.ok;
           done();
         })
         .catch(done);

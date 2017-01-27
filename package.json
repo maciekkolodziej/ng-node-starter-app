@@ -29,8 +29,7 @@
   },
   "scripts": {
     "edit": "swagger project edit",
-    "lint": "eslint app.js api models initializers",
-    "lint-test": "eslint --config test/.eslintrc.js test",
+    "lint": "eslint .",
     "start": "swagger project start",
     "test": "NODE_ENV=test swagger project test"
   }

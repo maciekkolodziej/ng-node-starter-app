@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     classMethods: {
       // TODO: delete lint disabling when `models` is used
-      associate(models) { // eslint-disable-line no-unused-vars
+      associate() {
         // associations can be defined here
       },
     },
