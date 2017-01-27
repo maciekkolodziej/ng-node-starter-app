@@ -1,5 +1,6 @@
 const jwt = require('jwt-simple');
 const passport = require('passport');
+const { compose } = require('compose-middleware');
 
 const { User } = require('../../models');
 const { JWT_TOKEN } = require('../../initializers/passport'); // TODO - as env. variable
@@ -18,23 +19,19 @@ module.exports = {
         return res.status(500).send(error);
       });
   },
-  login(req, res) {
-    const next = function (nextReq, nextRes) {
+  login: compose([
+    passport.authenticate('local'),
+    (req, res) => {
       const token = jwt.encode({
-        id: nextReq.user.id,
-        expirationDate: new Date(Date.now() + EXPIRATION_TIME)
-        }, JWT_TOKEN);
+        id: req.user.id,
+        expirationDate: new Date(Date.now() + EXPIRATION_TIME),
+      }, JWT_TOKEN);
 
-      return nextRes.status(200).send({ token });
-    }.bind(null, req, res);
-
-    passport.authenticate('local')(req, res, next);
-  },
-  getAccount(req, res) {
-    const next = function (nextReq, nextRes) {
-      return nextRes.status(200).send(nextReq.user);
-    }.bind(null, req, res);
-
-    passport.authenticate('bearer')(req, res, next);
-  },
+      res.status(200).send({ token });
+    },
+  ]),
+  getAccount: compose([
+    passport.authenticate('bearer'),
+    (req, res) => res.status(200).send(req.user),
+  ]),
 };
