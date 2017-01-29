@@ -1,3 +1,5 @@
+'use strict';
+
 const jwt = require('jwt-simple');
 const passport = require('passport');
 const { compose } = require('compose-middleware');

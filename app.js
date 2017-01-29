@@ -1,4 +1,4 @@
-
+'use strict';
 
 const SwaggerExpress = require('swagger-express-mw');
 const passport = require('passport');
