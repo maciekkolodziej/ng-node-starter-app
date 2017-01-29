@@ -19,7 +19,6 @@ module.exports = (sequelize, DataTypes) => {
       beforeUpdate: hashPassword,
     },
     classMethods: {
-      // TODO: delete lint disabling when `models` is used
       associate() {
         // associations can be defined here
       },
@@ -30,5 +29,6 @@ module.exports = (sequelize, DataTypes) => {
       },
     },
   });
+
   return User;
 };
