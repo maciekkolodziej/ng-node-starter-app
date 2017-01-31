@@ -1,3 +1,5 @@
+'use strict';
+
 const passport = require('passport');
 const jwt = require('jwt-simple');
 const LocalStrategy = require('passport-local').Strategy;
@@ -9,7 +11,7 @@ const JWT_TOKEN = 'secret'; // TODO: as env. variable
 
 passport.use(new LocalStrategy({ session: false }, (username, password, done) => {
   User.find({ where: { username } })
-    .then(user => {
+    .then((user) => {
       if (!user) { return done(null, false); }
       return Promise.all([user, user.isValidPassword(password)]);
     })

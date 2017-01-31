@@ -1,3 +1,5 @@
+'use strict';
+
 const jwt = require('jwt-simple');
 const passport = require('passport');
 const { compose } = require('compose-middleware');
@@ -12,7 +14,7 @@ module.exports = {
   userRegister(req, res) {
     User.create(req.body)
       .then(user => res.status(201).send(user))
-      .catch(error => {
+      .catch((error) => {
         if ('username' in error.fields) {
           return res.status(409).send(error);
         }
