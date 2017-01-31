@@ -5,9 +5,10 @@ const passport = require('passport');
 const { compose } = require('compose-middleware');
 
 const { User } = require('../../models');
-const { JWT_TOKEN } = require('../../initializers/passport'); // TODO - as env. variable
-
-const EXPIRATION_TIME = 7 * 24 * 60 * 60 * 1000; // one week - TODO - as env. variable
+const {
+  jwtToken: JWT_TOKEN,
+  tokenExpirationTime: EXPIRATION_TIME,
+} = require('../../config/config');
 
 module.exports = {
   EXPIRATION_TIME,
