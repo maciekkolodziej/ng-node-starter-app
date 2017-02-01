@@ -68,7 +68,18 @@ Project will automatically live-reload (triggered by any `*.js` file changes)
 npm run test
 ```
 
-## Project Structure
+## Modules
+
+| Module        | Purpose                                                    |
+|:--------------|:----------------------------------------------------------:|
+| Express       | Minimalistic Core framework wrapping Node.js internals     |
+| Passport      | Authentication, authorization, oauth                       |
+| PG            | Postgres database driver                                   |
+| Sequelize     | SQL ORM & migrations                                       |
+| JWT-simple    | Json Web Tokens generator and validator                    |
+| Eslint        | Code style vertification                                   |
+| Should        | Assertions library                                         |
+| Supertest     | REST API calls/integration testing                         |
 
 
 ## Contributing
