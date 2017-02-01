@@ -1,1 +1,45 @@
-# Skeleton project for Swagger
+# Node.js Starter App
+
+A boilerplate for Node.js REST API backends.
+
+## Features
+
+- Local Authentication using Email & Password
+- Authentication using token bearer strategy
+- Routing & validation handled by Swagger definition
+- Authenticated routes integrated with Swagger
+- Boilerplate for Models, Controllers & Tests
+- `.env` or environment variables driven configuration
+- Robust logging system with daily log rotation file
+- Fully dockerized
+
+## How to use
+
+#### Install the Node dependencies:
+```
+npm instal -g swagger
+npm install
+```
+
+If you're running production you can skip dev dependencies by adding `--production` flag:
+```
+npm install --production
+```
+
+### Edit swagger definition:
+```
+swagger project edit
+```
+
+#### Run the server
+```
+swagger project start
+```
+
+Project will automatically live-reload (triggered by any `*.js` file changes)
+
+
+#### Test
+```
+npm run test
+```
