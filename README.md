@@ -37,7 +37,25 @@ npm install --production
 swagger project edit
 ```
 
-#### Run the server
+#### Migrations and seeding
+Create migration file:
+```
+sequelize migration:create
+```
+Create seed file:
+```
+sequelize seed:create
+```
+Seed database:
+```
+sequelize db:seed:all
+```
+Migrate database:
+```
+sequelize migration:create
+```
+
+### Run the server
 ```
 swagger project start
 ```
