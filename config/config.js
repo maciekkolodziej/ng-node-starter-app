@@ -6,6 +6,7 @@ require('dotenv').config({ path: dotEnvPath });
 const REQUIRED_KEYS = [
   'DB_URL',
   'JWT_TOKEN',
+  'TOKEN_EXPIRATION_TIME',
 ];
 
 REQUIRED_KEYS.forEach((key) => {
@@ -16,9 +17,10 @@ REQUIRED_KEYS.forEach((key) => {
 
 const {
   JWT_TOKEN,
+  TOKEN_EXPIRATION_TIME,
 } = process.env;
 
 module.exports = {
   JWT_TOKEN,
-  TOKEN_EXPIRATION_TIME: 7 * 24 * 60 * 60 * 1000, // one week
+  TOKEN_EXPIRATION_TIME: Number(TOKEN_EXPIRATION_TIME),
 };
