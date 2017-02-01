@@ -10,7 +10,7 @@
     "url": "https://netguru.co"
   },
   "engines": {
-    "node": ">=6.9.0 < 6.9.4",
+    "node": ">=6.9.0 <=6.9.4",
   },
   "bugs": {
     "url" : "https://github.com/netguru/ng-node-starter-app/issues",
