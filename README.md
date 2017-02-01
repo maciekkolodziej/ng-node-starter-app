@@ -1,4 +1,5 @@
 # Node.js Starter App
+[![CircleCI](https://circleci.com/gh/netguru/ng-node-starter-app.svg?style=svg&circle-token=e9e20e72111fea648cfc150acf1206f694dcc954)](https://circleci.com/gh/netguru/ng-node-starter-app)
 
 A boilerplate for Node.js REST API backends.
 
@@ -48,6 +49,9 @@ Project will automatically live-reload (triggered by any `*.js` file changes)
 ```
 npm run test
 ```
+
+## Project Structure
+
 
 ## Contributing
 If something is unclear, confusing, or needs to be refactored, please let us know. Pull requests are always welcome, but due to the minimalistic nature of this project, We wouldn't accept all of them.
