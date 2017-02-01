@@ -5,5 +5,7 @@ dependencies:
   post:
     - npm install -g swagger
 test:
+  pre:
+    - createdb database_test
   override:
     - swagger project test
