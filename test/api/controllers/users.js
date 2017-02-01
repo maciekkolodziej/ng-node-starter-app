@@ -8,8 +8,8 @@ const server = require('../../../app');
 const { User } = require('../../../models');
 
 const {
-  jwtToken: JWT_TOKEN,
-  tokenExpirationTime: EXPIRATION_TIME,
+  JWT_TOKEN,
+  TOKEN_EXPIRATION_TIME,
 } = require('../../../config/config');
 
 const correctUser = {
@@ -139,7 +139,7 @@ describe('controllers', () => {
               user = createdUser;
               token = jwt.encode({
                 id: user.id,
-                expirationDate: new Date(Date.now() + EXPIRATION_TIME),
+                expirationDate: new Date(Date.now() + TOKEN_EXPIRATION_TIME),
               }, JWT_TOKEN);
             }));
 
