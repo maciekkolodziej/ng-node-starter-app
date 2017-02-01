@@ -9,7 +9,9 @@
   "main": "app.js",
   "dependencies": {
     "bcrypt": "^1.0.2",
+    "body-parser": "^1.16.0",
     "compose-middleware": "^2.2.0",
+    "config": "^1.24.0",
     "express": "^4.12.3",
     "jwt-simple": "^0.5.1",
     "passport": "^0.3.2",
@@ -19,7 +21,7 @@
     "pg-hstore": "^2.3.2",
     "sequelize": "^3.29.0",
     "sequelize-cli": "^2.5.1",
-    "swagger-express-mw": "^0.1.0"
+    "swagger-express-mw": "^0.6.0"
   },
   "devDependencies": {
     "eslint": "^3.14.1",
