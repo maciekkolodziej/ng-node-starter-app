@@ -3,12 +3,13 @@
 const should = require('should');
 const request = require('supertest');
 const jwt = require('jwt-simple');
+const config = require('config');
 
 const server = require('../../../app');
 const { User } = require('../../../models');
 
-const { JWT_TOKEN } = require('../../../initializers/passport'); // TODO: as env. variable
-const { EXPIRATION_TIME } = require('../../../api/controllers/users'); // TODO: as env. variable
+const JWT_TOKEN = config.get('jwt.secret');
+const EXPIRATION_TIME = config.get('jwt.expirationTime');
 
 const correctUser = {
   username: 'JohnDoe',

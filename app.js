@@ -11,7 +11,6 @@ const config = {
 
 require('./initializers/passport');
 
-
 SwaggerExpress.create(config, (err, swaggerExpress) => {
   if (err) { throw err; }
 

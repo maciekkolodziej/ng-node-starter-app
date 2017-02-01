@@ -2,12 +2,13 @@
 
 const passport = require('passport');
 const jwt = require('jwt-simple');
+const config = require('config');
 const LocalStrategy = require('passport-local').Strategy;
 const BearerStrategy = require('passport-http-bearer').Strategy;
 
 const { User } = require('../models');
 
-const JWT_TOKEN = 'secret'; // TODO: as env. variable
+const JWT_TOKEN = config.get('jwt.secret');
 
 passport.use(new LocalStrategy({ session: false }, (username, password, done) => {
   User.find({ where: { username } })

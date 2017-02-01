@@ -2,15 +2,15 @@
 
 const jwt = require('jwt-simple');
 const passport = require('passport');
+const config = require('config');
 const { compose } = require('compose-middleware');
 
 const { User } = require('../../models');
-const { JWT_TOKEN } = require('../../initializers/passport'); // TODO - as env. variable
 
-const EXPIRATION_TIME = 7 * 24 * 60 * 60 * 1000; // one week - TODO - as env. variable
+const JWT_TOKEN = config.get('jwt.secret');
+const EXPIRATION_TIME = config.get('jwt.expirationTime');
 
 module.exports = {
-  EXPIRATION_TIME,
   userRegister(req, res) {
     User.create(req.body)
       .then(user => res.status(201).send(user))
