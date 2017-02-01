@@ -48,3 +48,11 @@ Project will automatically live-reload (triggered by any `*.js` file changes)
 ```
 npm run test
 ```
+
+## Contributing
+If something is unclear, confusing, or needs to be refactored, please let us know. Pull requests are always welcome, but due to the minimalistic nature of this project, We wouldn't accept all of them.
+
+## License
+The MIT License (MIT)
+
+Copyright (c) 2017 [netguru.co](http://netguru.co)
