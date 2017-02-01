@@ -2,5 +2,7 @@ machine:
   node:
     version: 6.9.2
 test:
+  pre:
+    - npm install -g swagger
   override:
     - swagger project test
