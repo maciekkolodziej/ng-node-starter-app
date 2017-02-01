@@ -81,6 +81,13 @@ npm run test
 | Should        | Assertions library                                         |
 | Supertest     | REST API calls/integration testing                         |
 
+## Guides
+#### Creating model
+
+#### Creating route and controller
+
+#### Adding middleware
+
 
 ## Contributing
 If something is unclear, confusing, or needs to be refactored, please let us know. Pull requests are always welcome, but due to the minimalistic nature of this project, We wouldn't accept all of them.
