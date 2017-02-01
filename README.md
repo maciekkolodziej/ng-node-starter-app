@@ -15,6 +15,11 @@ A boilerplate for Node.js REST API backends.
 
 ## How to use
 
+#### Prerequisities
+- [Node.js](https://nodejs.org/en/) (_preferably latest LTS_)
+- [Postgres](https://www.postgresql.org)
+- [swagger-node] (https://github.com/swagger-api/swagger-node) (installed globally)
+
 #### Install the Node dependencies:
 ```
 npm instal -g swagger
@@ -26,7 +31,7 @@ If you're running production you can skip dev dependencies by adding `--producti
 npm install --production
 ```
 
-### Edit swagger definition:
+#### Edit swagger definition:
 ```
 swagger project edit
 ```
