@@ -1,8 +1,9 @@
 machine:
   node:
     version: 6.9.2
-test:
-  pre:
+dependencies:
+  post:
     - npm install -g swagger
+test:
   override:
     - swagger project test
