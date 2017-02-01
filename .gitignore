@@ -36,3 +36,4 @@ config/runtime.yaml
 # Config files
 config/*
 !config/default.js
+!config/*.example

@@ -1,0 +1,11 @@
+'use strict';
+
+module.exports = {
+  db: {
+    username: 'props_node',
+    password: '',
+    name: 'props_node_test',
+    host: 'localhost',
+    dialect: 'postgres',
+  },
+};
