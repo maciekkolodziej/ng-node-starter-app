@@ -3,8 +3,7 @@ machine:
     version: 6.9.2
 dependencies:
   post:
-    - npm install -g swagger
-    - npm install -g sequelize-cli
+    - npm install -g swagger sequelize-cli
 test:
   pre:
     - createdb database_test
