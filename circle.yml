@@ -4,8 +4,10 @@ machine:
 dependencies:
   post:
     - npm install -g swagger
+    - npm install -g sequelize-cli
 test:
   pre:
     - createdb database_test
+    - sequelize db:migrate
   override:
     - swagger project test
