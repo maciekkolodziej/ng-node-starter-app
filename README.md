@@ -32,6 +32,12 @@ If you're running production you can skip dev dependencies by adding `--producti
 npm install --production
 ```
 
+#### Prepare configuration:
+```
+cp .env.development.example .env.development
+```
+And then fill necessary variables
+
 #### Edit swagger definition:
 ```
 swagger project edit
@@ -83,10 +89,23 @@ npm run test
 
 ## Guides
 #### Creating model
+1. Run `sequelize migration:create`
+2. Rename created file (``) to something meaningful but maintain timestamp at the beggining of the file
+3. Edit schema definition inside the file. More on that [here](http://docs.sequelizejs.com/en/v3/docs/migrations/).
+4. Run `sequelize db:migrate` in order to alter database
+5. [Create model definition](http://docs.sequelizejs.com/en/v3/docs/models-definition/) inside `/models` directory. 
+6. Now you can import your model in controller or any other file like this:
+```
+const { YourNewModel } = require('../../models');
+```
+
+How to create, read, update, delete models: [Sequelize Docs](http://docs.sequelizejs.com/en/v3/docs/querying/)
 
 #### Creating route and controller
 
 #### Adding middleware
+
+#### Adding new environment variables
 
 
 ## Contributing
