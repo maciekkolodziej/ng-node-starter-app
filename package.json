@@ -62,6 +62,10 @@
   "scripts": {
     "edit": "swagger project edit",
     "start": "swagger project start",
-    "test": "NODE_ENV=test swagger project test"
+    "test": "NODE_ENV=test swagger project test",
+    "migrate": "./node_modules/.bin/sequelize db:migrate",
+    "seed": "./node_modules/.bin/sequelize db:seed:all",
+    "create-migration": "./node_modules/.bin/sequelize migration:create",
+    "create-seed": "./node_modules/.bin/sequelize seed:create"
   }
 }

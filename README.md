@@ -46,19 +46,19 @@ swagger project edit
 #### Migrations and seeding
 Create migration file:
 ```
-sequelize migration:create
+npm run create-migration
 ```
 Create seed file:
 ```
-sequelize seed:create
+npm run create-seed
 ```
 Seed database:
 ```
-sequelize db:seed:all
+npm run seed
 ```
 Migrate database:
 ```
-sequelize migration:create
+npm run migrate
 ```
 
 ### Run the server
@@ -89,7 +89,7 @@ npm run test
 
 ## Guides
 #### Creating model
-1. Run `sequelize migration:create`
+1. Run `npm run create-migration`
 2. Rename created file (``) to something meaningful but maintain timestamp at the beggining of the file
 3. Edit schema definition inside the file. More on that [here](http://docs.sequelizejs.com/en/v3/docs/migrations/).
 4. Run `sequelize db:migrate` in order to alter database
