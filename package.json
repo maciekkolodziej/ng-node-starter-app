@@ -2,11 +2,32 @@
   "name": "ng-node-starter-app",
   "version": "0.0.1",
   "private": true,
-  "description": "Netguru Node.JS API starter app",
-  "keywords": [],
-  "author": "",
-  "license": "",
+  "description": "Netguru Node.JS REST API starter app",
+  "keywords": ["node", "starter", "rest", "api", "netguru", "swagger"],
+  "author": {
+    "name": "Netguru",
+    "email": "nodejs@netguru.co",
+    "url": "https://netguru.co"
+  },
+  "engines": {
+    "node": "6.9.4"
+  },
+  "bugs": {
+    "url" : "https://github.com/netguru/ng-node-starter-app/issues",
+    "email" : "nodejs@netguru.co"
+  },
+  "contributors": [
+    "Justyna Rachowicz <justyna.rachowicz@netguru.co> (https://github.com/mrowa44)",
+    "Justyn Jóźwiak <justyn.jozwiak@netguru.co> (https://github.com/justynjozwiak)",
+    "Adrian Zalewski <adrian.zalewski@netguru.co> (https://bardzusny.lol)",
+    "Rafał Wiliński <rafal.wilinski@netguru.co> (http://rwilinski.me)"
+  ],
+  "license": "MIT",
   "main": "app.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/netguru/ng-node-starter-app.git"
+  },
   "dependencies": {
     "bcrypt": "^1.0.2",
     "compose-middleware": "^2.2.0",
