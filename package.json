@@ -6,7 +6,7 @@
   "keywords": ["node", "starter", "rest", "api", "netguru", "swagger"],
   "author": {
     "name": "Netguru",
-    "email": "hi@netguru.co",
+    "email": "nodejs@netguru.co",
     "url": "https://netguru.co"
   },
   "engines": {
@@ -14,7 +14,7 @@
   },
   "bugs": {
     "url" : "https://github.com/netguru/ng-node-starter-app/issues",
-    "email" : "rafal.wilinski@netguru.co"
+    "email" : "nodejs@netguru.co"
   },
   "contributors": [
     "Justyna Rachowicz <justyna.rachowicz@netguru.co> (https://github.com/mrowa44)",
