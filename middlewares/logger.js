@@ -1,6 +1,3 @@
-// bunyan - we have rotating log files for free and also amount of back in time copies
-// pretty-printing is available in CLI mode
-
 const bunyan = require('bunyan')
 
 const requestSerializer = (req) => {
@@ -12,15 +9,14 @@ const requestSerializer = (req) => {
 }
 
 const logger = bunyan.createLogger({ 
-  name: 'props-node',
+  name: 'ng-node-starter-app',
   serializers: { req: requestSerializer },
   streams: [{
     stream: process.stdout
   }, {
     type: 'rotating-file',
-    path: 'logs/props-node.log',
+    path: 'logs/ng-node-starter-app.log',
     period: '1d'
-    //we can specify also 'count' here which is amount of kept back copies
   }]
 });
 

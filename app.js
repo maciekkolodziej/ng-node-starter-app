@@ -4,8 +4,7 @@ const SwaggerExpress = require('swagger-express-mw');
 const passport = require('passport');
 const app = require('express')();
 
-const bunyanLoggerMiddleware = require('./middlewares/bunyan-logger');
-const winstonLoggerMiddleware = require('./middlewares/winston-logger');
+const loggerMiddleware = require('./middlewares/logger');
 
 const config = {
   appRoot: __dirname, // required config
@@ -20,8 +19,7 @@ SwaggerExpress.create(config, (err, swaggerExpress) => {
   app.use(passport.initialize());
   swaggerExpress.register(app);
 
-  app.use(bunyanLoggerMiddleware()); // optionally we can set log level app.use(bunyanLoggerMiddleware('warn'))
-  app.use(winstonLoggerMiddleware()); // optionally we can set log level app.use(winstonLoggerMiddleware('warn'))
+  app.use(loggerMiddleware());
 
   const port = process.env.PORT || 10010;
   app.listen(port);
