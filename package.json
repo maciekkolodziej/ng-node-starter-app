@@ -3,14 +3,14 @@
   "version": "0.0.1",
   "private": true,
   "description": "Netguru Node.JS REST API starter app",
-  "keywords": ["node", "starter", "rest", "api", "netguru"],
+  "keywords": ["node", "starter", "rest", "api", "netguru", "swagger"],
   "author": {
     "name": "Netguru",
     "email": "hi@netguru.co",
     "url": "https://netguru.co"
   },
   "engines": {
-    "node": ">=6.9.0 <=6.9.4"
+    "node": "6.9.4"
   },
   "bugs": {
     "url" : "https://github.com/netguru/ng-node-starter-app/issues",
