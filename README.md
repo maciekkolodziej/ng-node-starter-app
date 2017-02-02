@@ -104,8 +104,23 @@ How to create, read, update, delete models: [Sequelize Docs](http://docs.sequeli
 #### Creating route and controller
 
 #### Adding middleware
+1. Create new `.js` file in `middlewares` directory.
+2. Define your own middleware function inside and export it.
+3. Require that file in `app.js` file and use it like this:
+```
+app.use(customMiddleware());
+```
 
 #### Adding new environment variables
+For storing environment variables we use `dotenv`. It means that you can add your variables as key - value pairs in `.env.*` files depending on environment:
+1. `.env.development`
+2. `.env.test`
+3. `.env.production`
+
+e.g.:
+```
+DB_USERNAME=root
+```
 
 
 ## Contributing
