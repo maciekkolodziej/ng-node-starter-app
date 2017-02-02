@@ -7,8 +7,10 @@ const jwt = require('jwt-simple');
 const server = require('../../../app');
 const { User } = require('../../../models');
 
-const { JWT_TOKEN } = require('../../../initializers/passport'); // TODO: as env. variable
-const { EXPIRATION_TIME } = require('../../../api/controllers/users'); // TODO: as env. variable
+const {
+  JWT_TOKEN,
+  TOKEN_EXPIRATION_TIME,
+} = require('../../../config/config');
 
 const correctUser = {
   username: 'JohnDoe',
@@ -137,7 +139,7 @@ describe('controllers', () => {
               user = createdUser;
               token = jwt.encode({
                 id: user.id,
-                expirationDate: new Date(Date.now() + EXPIRATION_TIME),
+                expirationDate: new Date(Date.now() + TOKEN_EXPIRATION_TIME),
               }, JWT_TOKEN);
             }));
 

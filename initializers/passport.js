@@ -7,7 +7,7 @@ const BearerStrategy = require('passport-http-bearer').Strategy;
 
 const { User } = require('../models');
 
-const JWT_TOKEN = 'secret'; // TODO: as env. variable
+const { JWT_TOKEN } = require('../config/config');
 
 passport.use(new LocalStrategy({ session: false }, (username, password, done) => {
   User.find({ where: { username } })
