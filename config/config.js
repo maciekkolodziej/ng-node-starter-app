@@ -2,6 +2,7 @@
 
 const dotEnvPath = `.env.${process.env.NODE_ENV || 'development'}`;
 require('dotenv').config({ path: dotEnvPath });
+const log = require('../middlewares/logger').logger;
 
 const REQUIRED_KEYS = [
   'DB_USERNAME',
@@ -38,5 +39,6 @@ module.exports = {
     database: DB_DATABASE,
     host: DB_HOST,
     dialect: 'postgres',
+    logging: log.info.bind(log),
   },
 };
