@@ -1,0 +1,14 @@
+machine:
+  node:
+    version: 6.9.2
+dependencies:
+  post:
+    - npm install -g swagger sequelize-cli
+test:
+  pre:
+    - createdb database_test
+    - sequelize db:migrate
+  override:
+    - swagger project test
+  post:
+    - ./deploy.sh staging $CIRCLE_PR_NUMBER
