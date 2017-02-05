@@ -20,8 +20,8 @@ const logger = bunyan.createLogger({
   }],
 });
 
-const loggerMiddleware = level => (req, res, next) => {
-  logger[level || 'info']({ req });
+const loggerMiddleware = (level = 'info') => (req, res, next) => {
+  logger[level]({ req });
   next();
 };
 
