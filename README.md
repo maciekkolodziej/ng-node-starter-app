@@ -23,7 +23,7 @@ It's key to get properly acquainted with them before starting development of any
 Additionally, several other dependencies are installed and chosen to be universally used:
 * [Passport](http://passportjs.org/) - de-facto standard authentication middleware in Node.js
 * [node.bcrypt.js](https://github.com/kelektiv/node.bcrypt.js) - used for hashing passwords associated with example User model
-* [node-jwt-simple](https://github.com/hokaccha/node-jwt-simple) - encoding/decoding JSON Web Tokens, used for main route authentication
+* [node-jwt-simple](https://github.com/hokaccha/node-jwt-simple) - encoding/decoding JSON Web Tokens, used for basic route authentication
 * [dotenv](https://github.com/motdotla/dotenv) - loading of environment variables from `.env.*` files, where environment-specific configuration options are being held.
 * [SuperTest](https://github.com/visionmedia/supertest) - request-based controller tests.
 * [should.js](https://github.com/shouldjs/should.js) - test assertion library. (Note: other assertion styles are by no means forbidden.)
@@ -88,7 +88,9 @@ Following are some of the most common, practical scenarios that will probably ha
 - `GET /props/:id` - fetch specific _Prop_
 - `PUT /props/:id` - edit an existing _Prop_
 - `DELETE /props/:id` - delete an existing _Prop_
+
 Refer to existing documentation for _User_-related endpoints and [Swagger specification docs](http://swagger.io/specification/) for more detailed information.
+
 2. Create controller file defining route handlers for described endpoints. These files should reside in `api/controllers` directory and follow resource-based naming pattern, i.e. `api/controllers/props.js`. See `api/controllers/users.js` file for example implementation.
 3. Create test file for your controller - i.e. `test/api/controllers/props.js`.
 4. Add actual handler implementations (in i.e. `api/controllers/props.js` file) file together with request-based tests (in i.e. `test/api/controllers/props.js` file).
