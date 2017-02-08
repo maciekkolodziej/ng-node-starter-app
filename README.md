@@ -11,6 +11,7 @@ A boilerplate for Node.js REST API back-ends.
 - [Passport.js](http://passportjs.org/) with [Local](https://github.com/jaredhanson/passport-local) (username + password), [Bearer](https://github.com/jaredhanson/passport-http-bearer) (JSON Web Tokens) authentication strategies.
 - Configuration based on environment variables loaded from `.env.*` files.
 - Robust logging system with daily log rotation file.
+- Functional [Dockerfile](https://docs.docker.com/engine/reference/builder/) to launch application within [Docker](https://www.docker.com/) container (most likely deployment scenario).
 
 ## Technology stack
 
