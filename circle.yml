@@ -1,12 +1,13 @@
 machine:
   node:
-    version: 6.9.2
+    version: 6.9.4
 dependencies:
   post:
-    - npm install -g swagger sequelize-cli
+    - npm install -g swagger sequelize-cli nodemon
 test:
   pre:
+    - cp .env.test.example .env.test
     - createdb database_test
     - sequelize db:migrate
   override:
-    - swagger project test
+    - npm test

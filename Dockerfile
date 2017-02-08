@@ -10,8 +10,7 @@ RUN npm install
 
 COPY . /usr/src/app
 
-RUN npm install -g sequelize-cli nodemon 
-
+RUN npm install -g sequelize-cli nodemon swagger
 RUN apt-get update
 
 RUN sequelize db:migrate

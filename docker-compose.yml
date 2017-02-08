@@ -1,6 +1,0 @@
-web:
-  build: .
-  dockerfile: Dockerfile
-  cpu_quota: 100000
-  environment:
-    - DATABASE_URL=postgres://postgres@integration.postgresql.devguru.co:5432

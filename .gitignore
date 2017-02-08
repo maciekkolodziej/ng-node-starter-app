@@ -2,8 +2,8 @@
 .idea
 
 # Logs
-logs
 *.log
+logs/*.log
 
 # Runtime data
 pids
@@ -32,3 +32,7 @@ node_modules
 
 # Runtime configuration for swagger app
 config/runtime.yaml
+
+# Environment config variables
+.env.*
+!.env.*.example

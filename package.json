@@ -2,14 +2,37 @@
   "name": "ng-node-starter-app",
   "version": "0.0.1",
   "private": true,
-  "description": "Netguru Node.JS API starter app",
-  "keywords": [],
-  "author": "",
-  "license": "",
+  "description": "Netguru Node.JS REST API starter app",
+  "keywords": ["node", "starter", "rest", "api", "netguru", "swagger"],
+  "author": {
+    "name": "Netguru",
+    "email": "nodejs@netguru.co",
+    "url": "https://netguru.co"
+  },
+  "engines": {
+    "node": "6.9.4"
+  },
+  "bugs": {
+    "url" : "https://github.com/netguru/ng-node-starter-app/issues",
+    "email" : "nodejs@netguru.co"
+  },
+  "contributors": [
+    "Justyna Rachowicz <justyna.rachowicz@netguru.co> (https://github.com/mrowa44)",
+    "Justyn Jóźwiak <justyn.jozwiak@netguru.co> (https://github.com/justynjozwiak)",
+    "Adrian Zalewski <adrian.zalewski@netguru.co> (https://bardzusny.lol)",
+    "Rafał Wiliński <rafal.wilinski@netguru.co> (http://rwilinski.me)"
+  ],
+  "license": "MIT",
   "main": "app.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/netguru/ng-node-starter-app.git"
+  },
   "dependencies": {
+    "bunyan": "^1.8.5",
     "bcrypt": "^1.0.2",
     "compose-middleware": "^2.2.0",
+    "dotenv": "^4.0.0",
     "express": "^4.12.3",
     "jwt-simple": "^0.5.1",
     "passport": "^0.3.2",
@@ -31,6 +54,7 @@
   "scripts": {
     "edit": "swagger project edit",
     "start": "swagger project start",
-    "test": "NODE_ENV=test swagger project test"
+    "lint": "eslint .",
+    "test": "npm run lint && NODE_ENV=test swagger project test"
   }
 }
