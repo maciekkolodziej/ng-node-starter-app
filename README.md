@@ -27,6 +27,7 @@ Additionally, several other dependencies are installed and chosen to be universa
 * [dotenv](https://github.com/motdotla/dotenv) - loading of environment variables from `.env.*` files, where environment-specific configuration options are being held.
 * [SuperTest](https://github.com/visionmedia/supertest) - request-based controller tests.
 * [should.js](https://github.com/shouldjs/should.js) - test assertion library. (Note: other assertion styles are by no means forbidden.)
+* [nodemon](https://github.com/remy/nodemon) - Node.js process manager, if any files change, nodemon will automatically restart your node application.
 
 ## Basic setup
 
@@ -34,7 +35,7 @@ To get base application up and running, make sure you have recent versions of [N
 
 ```bash
 npm install # install all dependencies listed in package.json file
-npm install -g swagger sequelize-cli # install CLI tools necessary for development
+npm install -g swagger sequelize-cli nodemon # install CLI tools necessary for development
 cp .env.development.sample .env.development
 cp .env.test.sample .env.test
 ```
@@ -54,7 +55,7 @@ sequelize db:migrate
 NODE_ENV=test sequelize db:migrate
 ```
 
-That's it! Now you should be able to run automated application tests using `npm test` command, or start API server running locally with `npm start` (by default listening on port 10010).
+That's it! Now you should be able to run automated application tests using `npm test` command, or start API server running locally with `nodemon` (by default listening on port 10010).
 
 ## Application structure
 
@@ -107,7 +108,7 @@ sequelize db:migrate
 ```
 3. Create corresponding model test file, i.e. `test/models/prop.spec.js`
 4. Add custom model methods, tests for them as necessary.
-5. Created model is now available as export of `models/index.js` file: 
+5. Created model is now available as export of `models/index.js` file:
 ```javascript
 const { Prop } = require('./models');
 ```
