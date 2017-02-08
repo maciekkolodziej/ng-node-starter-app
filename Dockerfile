@@ -14,7 +14,6 @@ RUN npm install -g sequelize-cli nodemon swagger
 RUN apt-get update
 
 RUN sequelize db:migrate
-RUN NODE_ENV=test sequelize db:migrate
 
 EXPOSE 10010
 
