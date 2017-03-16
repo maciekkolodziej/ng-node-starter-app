@@ -1,6 +1,8 @@
 machine:
   node:
     version: 6.9.4
+  services:
+    - docker
 dependencies:
   post:
     - npm install -g swagger sequelize-cli
