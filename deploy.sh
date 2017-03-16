@@ -6,12 +6,15 @@ SHA1=$2
 
 NAME=ng-node-starter-app
 EB_BUCKET=ng-node-starter-app-deployments
+REGION=us-west-2
+
+echo Deploying $NAME to environment $BRANCH, SHA: $SHA1, region: $REGION
 
 ENV=$NAME-$BRANCH
 VERSION=$BRANCH-$SHA1
 ZIP=$VERSION.zip
 
-aws configure set default.region us-east-1
+aws configure set default.region $REGION
 aws configure set default.output json
 
 # Login to AWS Elastic Container Registry
@@ -20,9 +23,9 @@ eval $(aws ecr get-login)
 # Build the image
 docker build -t $NAME:$VERSION .
 # Tag it
-docker tag $NAME:$VERSION $AWS_ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com/$NAME:$VERSION
+docker tag $NAME:$VERSION $AWS_ACCOUNT_ID.dkr.ecr.$REGION.amazonaws.com/$NAME:$VERSION
 # Push to AWS Elastic Container Registry
-docker push $AWS_ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com/$NAME:$VERSION
+docker push $AWS_ACCOUNT_ID.dkr.ecr.$REGION.amazonaws.com/$NAME:$VERSION
 
 # Replace the <AWS_ACCOUNT_ID> with your ID
 sed -i='' "s/<AWS_ACCOUNT_ID>/$AWS_ACCOUNT_ID/" dockerrun.aws.json
@@ -32,7 +35,7 @@ sed -i='' "s/<NAME>/$NAME" dockerrun.aws.json
 sed -i='' "s/<TAG>/$VERSION/" dockerrun.aws.json
 
 # Zip up the Dockerrun file
-zip -r $ZIP Dockerrun.aws.json
+zip -r $ZIP dockerrun.aws.json
 
 # Send zip to S3 Bucket
 aws s3 cp $ZIP s3://$EB_BUCKET/$ZIP
