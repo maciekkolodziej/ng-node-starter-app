@@ -1,12 +1,11 @@
 #!/bin/bash
+
 # usage: ./deploy.sh staging f0478bd7c2f584b41a49405c91a439ce9d944657
 BRANCH=$1
 SHA1=$2
 
-# Replace with your variables
-AWS_ACCOUNT_ID=12345678900
-NAME=name-of-service-to-deploy
-EB_BUCKET=aws-s3-bucket-to-hold-application-versions
+NAME=ng-node-starter-app
+EB_BUCKET=ng-node-starter-app-deployments
 
 VERSION=$BRANCH-$SHA1
 ZIP=$VERSION.zip
