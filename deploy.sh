@@ -8,7 +8,7 @@ NAME=ng-node-starter-app
 EB_BUCKET=ng-node-starter-app-deployments
 REGION=us-west-2
 
-echo Deploying $NAME to environment $BRANCH, SHA: $SHA1, region: $REGION
+echo Deploying $NAME to environment $BRANCH, region: $REGION
 
 ENV=$NAME-$BRANCH
 VERSION=$BRANCH-$SHA1
