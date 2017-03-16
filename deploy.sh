@@ -7,6 +7,7 @@ SHA1=$2
 NAME=ng-node-starter-app
 EB_BUCKET=ng-node-starter-app-deployments
 
+ENV=$NAME-$BRANCH
 VERSION=$BRANCH-$SHA1
 ZIP=$VERSION.zip
 
@@ -40,4 +41,4 @@ aws s3 cp $ZIP s3://$EB_BUCKET/$ZIP
 aws elasticbeanstalk create-application-version --application-name $NAME-application --version-label $VERSION --source-bundle S3Bucket=$EB_BUCKET,S3Key=$ZIP
 
 # Update the environment to use the new application version
-aws elasticbeanstalk update-environment --environment-name Sample-env-1 --version-label $VERSION
+aws elasticbeanstalk update-environment --environment-name $ENV --version-label $VERSION
