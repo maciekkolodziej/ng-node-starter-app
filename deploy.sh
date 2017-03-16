@@ -29,7 +29,7 @@ docker push $AWS_ACCOUNT_ID.dkr.ecr.$REGION.amazonaws.com/$NAME:$VERSION
 # Replace the <AWS_ACCOUNT_ID> with your ID
 sed -i='' "s/<AWS_ACCOUNT_ID>/$AWS_ACCOUNT_ID/" Dockerrun.aws.json
 # Replace the <NAME> with the your name
-sed -i='' "s/<NAME>/$NAME" Dockerrun.aws.json
+sed -i='' "s/<NAME>/$NAME/" Dockerrun.aws.json
 # Replace the <TAG> with the your version number
 sed -i='' "s/<TAG>/$VERSION/" Dockerrun.aws.json
 
