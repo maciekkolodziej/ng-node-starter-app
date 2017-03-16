@@ -12,6 +12,7 @@ VERSION=$BRANCH-$SHA1
 ZIP=$VERSION.zip
 
 aws configure set default.region us-east-1
+aws configure set default.output json
 
 # Login to AWS Elastic Container Registry
 eval $(aws ecr get-login)
@@ -24,11 +25,11 @@ docker tag $NAME:$VERSION $AWS_ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com/$NAME:
 docker push $AWS_ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com/$NAME:$VERSION
 
 # Replace the <AWS_ACCOUNT_ID> with your ID
-sed -i='' "s/<AWS_ACCOUNT_ID>/$AWS_ACCOUNT_ID/" Dockerrun.aws.json
+sed -i='' "s/<AWS_ACCOUNT_ID>/$AWS_ACCOUNT_ID/" dockerrun.aws.json
 # Replace the <NAME> with the your name
-sed -i='' "s/<NAME>/$NAME" Dockerrun.aws.json
+sed -i='' "s/<NAME>/$NAME" dockerrun.aws.json
 # Replace the <TAG> with the your version number
-sed -i='' "s/<TAG>/$VERSION/" Dockerrun.aws.json
+sed -i='' "s/<TAG>/$VERSION/" dockerrun.aws.json
 
 # Zip up the Dockerrun file
 zip -r $ZIP Dockerrun.aws.json
